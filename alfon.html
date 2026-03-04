@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Alfon GPT</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="menu">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Menú</h2>
+    <ul>
+      <li><a href="introduccion.html">Introducción</a></li>
+      <li><a href="alfon.html">Alfon</a></li>
+      <li><a href="galeria.html">Galería</a></li>
+      <li><a href="peticiones.html">Peticiones</a></li>
+    </ul>
+  </div>
+
+  <!-- Contenido -->
+  <div class="contenido">
+    <h1>Alfon GPT</h1>
+    <p>Tras mucho esfuerzo, he creado una IA que intenta llegar a mi nivel de inteligencia (no es posible).</p>
+    <p>Bueno Alfon es una IA creada con el objetivo de que le escribas tus problemas y te ayude todo lo posible cuando el alfon de verdad no se encuentra disponible. Esta en fase de pruebas asi que no le tengas en cuenta algunos posibles errores.</p>
+    <div id="chat" class="chat-box"></div>
+
+    <div class="chat-input">
+      <input type="text" id="mensajeUsuario" placeholder="Escribe algo..." />
+      <button id="enviarBtn">Enviar</button>
+    </div>
+  </div>
+
+  <script>
+    const chat = document.getElementById('chat');
+    const input = document.getElementById('mensajeUsuario');
+    const boton = document.getElementById('enviarBtn');
+
+    function mostrarMensaje(mensaje, clase) {
+      const p = document.createElement('p');
+      p.textContent = mensaje;
+      p.className = clase;
+      chat.appendChild(p);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function obtenerRespuesta(mensaje) {
+      mensaje = mensaje.toLowerCase().trim();
+      if (mensaje === "hola") return "hola";
+      if (mensaje === "te quiero") return "te quiero";
+      if (mensaje === "Alfon") return "dime eli";
+
+
+      // Respuestas por defecto aleatorias
+      const respuestasDefault = [
+        "Eli cariño creo que estás sobrepensando, para la cabecita, te quiero.",
+        "Eli lo que me propones es demasiado complejo para mi inteligencia artificial, esto es un trabajo para el Alfon de verdad, ¡Escríbeme!",
+        "Eli te entiendo, tienes razón al 100%, mucho ánimo mi amor.",
+        "Eli cariño, recuerda que te quiero y todo saldrá bien.",
+        "Eli, yo creo que te equivocas, Alfon tiene razon jijiijiji."
+      ];
+
+      return respuestasDefault[Math.floor(Math.random() * respuestasDefault.length)];
+    }
+
+    function enviarMensaje() {
+      const mensajeUsuario = input.value.trim();
+      if (!mensajeUsuario) return;
+      mostrarMensaje(mensajeUsuario, 'usuario');
+      input.value = '';
+      const respuestaAlfon = obtenerRespuesta(mensajeUsuario);
+      setTimeout(() => mostrarMensaje(respuestaAlfon, 'alfon'), 300); // pequeño delay para realismo
+    }
+
+    boton.addEventListener('click', enviarMensaje);
+    input.addEventListener('keypress', e => { if (e.key === 'Enter') enviarMensaje(); });
+  </script>
+
+  <style>
+    .chat-box {
+      background: rgba(255,255,255,0.15);
+      border-radius: 15px;
+      padding: 20px;
+      min-height: 300px;
+      max-height: 500px;
+      overflow-y: auto;
+      margin-bottom: 15px;
+      backdrop-filter: blur(5px);
+    }
+
+    .chat-box p {
+      padding: 10px;
+      border-radius: 15px;
+      margin-bottom: 10px;
+      max-width: 80%;
+      word-wrap: break-word;
+    }
+
+    .usuario {
+      background: #00c6ff;
+      color: white;
+      align-self: flex-end;
+      margin-left: auto;
+    }
+
+    .alfon {
+      background: #0072ff;
+      color: white;
+      align-self: flex-start;
+      margin-right: auto;
+    }
+
+    .chat-input {
+      display: flex;
+      gap: 10px;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 10px;
+      border-radius: 15px;
+      border: none;
+    }
+
+    .chat-input button {
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      color: white; border-radius: 15px; border: none; padding: 10px 20px; cursor: pointer; transition: 0.3s;
+    }
+
+    .chat-input button:hover { background: linear-gradient(135deg, #0072ff, #00c6ff); }
+  </style>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Galería</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="menu">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Menú</h2>
+    <ul>
+      <li><a href="introduccion.html">Introducción</a></li>
+      <li><a href="alfon.html">Alfon</a></li>
+      <li><a href="galeria.html">Galería</a></li>
+      <li><a href="peticiones.html">Peticiones</a></li>
+    </ul>
+  </div>
+
+  <!-- Contenido -->
+  <div class="contenido">
+    <h1>Galería</h1>
+    <p>Mira todos nuestros recuerdos juntos, TE QUIERO </p>
+
+    <button id="imagenRandomBtn">Mostrar Archivo Aleatorio</button>
+    <div id="imagenRandom" style="margin-top:20px; text-align:center;"></div>
+
+    <h2>Collage de archivos</h2>
+    <div class="collage" id="collage"></div>
+  </div>
+
+  <!-- Importamos la lista de archivos -->
+  <script src="archivos.js"></script>
+
+  <script>
+    const collage = document.getElementById('collage');
+    const imagenRandomDiv = document.getElementById('imagenRandom');
+    const botonRandom = document.getElementById('imagenRandomBtn');
+
+    // Mostrar todos los archivos en el collage
+    archivos.forEach(src => {
+      let elemento;
+      if(src.match(/\.(mp4|webm|mov)$/i)) {
+        elemento = document.createElement('video');
+        elemento.src = src;
+        elemento.controls = true;
+      } else {
+        elemento = document.createElement('img');
+        elemento.src = src;
+      }
+      elemento.style.borderRadius = "15px";
+      elemento.style.width = "100%";
+      elemento.style.boxShadow = "0 5px 15px rgba(0,0,0,0.3)";
+      collage.appendChild(elemento);
+    });
+
+    // Mostrar un archivo aleatorio
+    botonRandom.addEventListener('click', () => {
+      const index = Math.floor(Math.random() * archivos.length);
+      const src = archivos[index];
+
+      if(src.match(/\.(mp4|webm|mov)$/i)) {
+        imagenRandomDiv.innerHTML = `<video src="${src}" controls style="max-width:80%; border-radius:15px;"></video>`;
+      } else {
+        imagenRandomDiv.innerHTML = `<img src="${src}" style="max-width:80%; border-radius:15px;">`;
+      }
+    });
+  </script>
+
+  <style>
+    .collage {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border-radius: 15px;
+      border: none;
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      color: white;
+      cursor: pointer;
+      font-size: 1em;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #0072ff, #00c6ff);
+    }
+  </style>
+
+</body>
+</html>
