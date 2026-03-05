@@ -228,6 +228,8 @@ body.menu {
 .chat-input button:hover {
   background: linear-gradient(135deg, #0072ff, #00c6ff);
 }
+
+
 /* ====================================== */
 /*  BOTÓN HAMBURGUESA Y RESPONSIVE        */
 /* ====================================== */
@@ -252,20 +254,21 @@ body.menu {
 
   .sidebar {
     position: fixed;
-    left: -260px; /* totalmente fuera de pantalla */
+    left: -200%; /* completamente fuera de pantalla */
     top: 0;
     width: 250px;
     height: 100%;
-    background: #f4f4f4;
+    background: #f4f4f4; /* color normal al mostrarse */
     transition: left 0.3s ease;
     z-index: 1000;
     padding: 20px;
     flex-direction: column;
-    box-shadow: 5px 0 15px rgba(0,0,0,0.2);
+    box-shadow: none; /* quitar sombra para que no se vea nada */
   }
 
   .sidebar.show {
     left: 0; /* se muestra */
+    box-shadow: 5px 0 15px rgba(0,0,0,0.2); /* sombra solo al mostrarse */
   }
 
   .sidebar h2, .sidebar a, .sidebar li {
