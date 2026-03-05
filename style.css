@@ -164,3 +164,29 @@ body.menu {
   margin-top: 10px;
   display: none;
 }
+
+
+@media (max-width: 768px) {
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding: 10px;
+  }
+
+  .sidebar ul {
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+  }
+
+  .sidebar li {
+    margin: 0;
+  }
+
+  .contenido {
+    margin-left: 0;
+  }
+
+}
