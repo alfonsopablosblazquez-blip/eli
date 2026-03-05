@@ -8,16 +8,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body class="menu">
-  
-  <button id="menuBtn">&#9776;</button> 
-  <script>
-  const menuBtn = document.getElementById('menuBtn');
-  const sidebar = document.querySelector('.sidebar');
 
-  menuBtn.addEventListener('click', () => {
-    sidebar.classList.toggle('show');
-  });
-  </script>
+  <!-- Botón hamburguesa -->
+  <button id="menuBtn">&#9776;</button>
+
   <!-- Sidebar -->
   <div class="sidebar">
     <h2>Menú</h2>
@@ -32,7 +26,7 @@
   <!-- Contenido -->
   <div class="contenido">
     <h1>Galería</h1>
-    <p>Mira todos nuestros recuerdos juntos, TE QUIERO </p>
+    <p>Mira todos nuestros recuerdos juntos, TE QUIERO</p>
 
     <button id="imagenRandomBtn">Mostrar Imagen Aleatoria</button>
     <div id="imagenRandom" style="margin-top:20px; text-align:center;"></div>
@@ -45,11 +39,30 @@
   <script src="archivos.js"></script>
 
   <script>
+    // ---------------------------
+    // Menú móvil
+    // ---------------------------
+    const menuBtn = document.getElementById('menuBtn');
+    const sidebar = document.querySelector('.sidebar');
+
+    menuBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('show');
+    });
+
+    // Cerrar menú al hacer click fuera en móvil
+    document.addEventListener('click', e => {
+      if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
+        sidebar.classList.remove('show');
+      }
+    });
+
+    // ---------------------------
+    // Galería
+    // ---------------------------
     const collage = document.getElementById('collage');
     const imagenRandomDiv = document.getElementById('imagenRandom');
     const botonRandom = document.getElementById('imagenRandomBtn');
 
-    // Mostrar todas las imágenes en el collage
     archivos.forEach(src => {
       const img = document.createElement('img');
       img.src = src;
@@ -59,7 +72,6 @@
       collage.appendChild(img);
     });
 
-    // Mostrar una imagen aleatoria
     botonRandom.addEventListener('click', () => {
       const index = Math.floor(Math.random() * archivos.length);
       const src = archivos[index];
@@ -67,12 +79,18 @@
     });
   </script>
 
+  <!-- Estilos específicos para Galería -->
   <style>
     .collage {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 15px;
       margin-top: 20px;
+    }
+
+    .collage img {
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
 
     button {
@@ -84,6 +102,7 @@
       cursor: pointer;
       font-size: 1em;
       transition: 0.3s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
 
     button:hover {

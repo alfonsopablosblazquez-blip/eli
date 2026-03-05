@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="icon" href="logo.png" type="image/png">
-  <title>Para Eli </title>
+  <title>Para Eli</title>
   <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -11,8 +11,69 @@
 
   <div class="card">
     <h1>Bienvenida Eli 🩷</h1>
-    <button onclick="location.href='introduccion.html'">Abrir</button>
+    <button class="abrirBtn" onclick="location.href='introduccion.html'">Abrir</button>
   </div>
+
+  <style>
+    /* Centrar la tarjeta en la pantalla */
+    body.portada {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      font-family: 'Arial', sans-serif;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.15);
+      padding: 60px 40px;
+      border-radius: 25px;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(0,0,0,0.3);
+      backdrop-filter: blur(8px);
+      max-width: 90%;
+    }
+
+    .card h1 {
+      color: white;
+      font-size: 2.5em;
+      margin-bottom: 30px;
+    }
+
+    .card button {
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      color: white;
+      border: none;
+      border-radius: 15px;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .card button:hover {
+      background: linear-gradient(135deg, #0072ff, #00c6ff);
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 40px 20px;
+      }
+
+      .card h1 {
+        font-size: 2em;
+      }
+
+      .card button {
+        padding: 8px 16px;
+        font-size: 0.9em;
+      }
+    }
+  </style>
 
 </body>
 </html>

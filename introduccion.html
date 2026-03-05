@@ -8,16 +8,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body class="menu">
-  
-  <button id="menuBtn">&#9776;</button> 
-  <script>
-  const menuBtn = document.getElementById('menuBtn');
-  const sidebar = document.querySelector('.sidebar');
 
-  menuBtn.addEventListener('click', () => {
-    sidebar.classList.toggle('show');
-  });
-  </script>
+  <button id="menuBtn">&#9776;</button> 
+
+  <!-- Sidebar -->
   <div class="sidebar">
     <h2>Menú</h2>
     <ul>
@@ -28,6 +22,7 @@
     </ul>
   </div>
 
+  <!-- Contenido -->
   <div class="contenido">
     <h1>Introducción</h1>
     <p>¡Bienvenida, Eli!</p>
@@ -46,6 +41,18 @@
 
     <p>Te quiere, Alfon</p>
   </div>
+
+  <!-- Script para menú responsive -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuBtn = document.getElementById('menuBtn');
+      const sidebar = document.querySelector('.sidebar');
+
+      menuBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('show');
+      });
+    });
+  </script>
 
 </body>
 </html>
