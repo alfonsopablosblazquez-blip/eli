@@ -4,7 +4,9 @@
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
-  height: 100vh;
+  min-height: 100vh; /* evita scroll extra en móvil */
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: white;
 }
 
 /* Botones genéricos */
@@ -29,7 +31,6 @@ body.portada {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
 }
 
 .card {
@@ -62,8 +63,6 @@ body.portada {
 body.menu {
   display: flex;
   height: 100vh;
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
-  color: white;
 }
 
 /* Sidebar */
@@ -84,6 +83,9 @@ body.menu {
 .sidebar ul {
   list-style: none;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .sidebar li,
@@ -91,7 +93,7 @@ body.menu {
   display: block;
   color: white;
   text-decoration: none;
-  margin: 15px 0;
+  margin: 0;
   padding: 10px;
   border-radius: 15px;
   transition: 0.3s;
@@ -133,8 +135,8 @@ body.menu {
 /* ====================================== */
 #formPeticiones {
   display: flex;
-  flex-direction: column;  /* Campos apilados verticalmente */
-  gap: 15px;               /* Espacio entre campos */
+  flex-direction: column;
+  gap: 15px;
   max-width: 500px;
 }
 
@@ -165,28 +167,120 @@ body.menu {
   display: none;
 }
 
+/* ====================================== */
+/*  CHAT                                  */
+/* ====================================== */
+.chat-box {
+  background: rgba(255,255,255,0.15);
+  border-radius: 15px;
+  padding: 20px;
+  min-height: 300px;
+  max-height: 500px;
+  overflow-y: auto;
+  margin-bottom: 15px;
+  backdrop-filter: blur(5px);
+}
 
+.chat-box p {
+  padding: 10px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.usuario {
+  background: #00c6ff;
+  color: white;
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+.alfon {
+  background: #0072ff;
+  color: white;
+  align-self: flex-start;
+  margin-right: auto;
+}
+
+.chat-input {
+  display: flex;
+  gap: 10px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 15px;
+  border: none;
+}
+
+.chat-input button {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: white;
+  border-radius: 15px;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.chat-input button:hover {
+  background: linear-gradient(135deg, #0072ff, #00c6ff);
+}
+
+/* ====================================== */
+/*  BOTÓN HAMBURGUESA Y RESPONSIVE        */
+/* ====================================== */
+#menuBtn {
+  display: none; /* solo se muestra en móvil */
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  font-size: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+  color: #0072ff;
+}
+
+/* Media query combinada para móvil */
 @media (max-width: 768px) {
+  #menuBtn {
+    display: block;
+  }
 
   .sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
-    padding: 10px;
+    position: fixed;
+    left: -250px; /* fuera de pantalla */
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background: #f4f4f4;
+    transition: left 0.3s ease;
+    z-index: 999;
+    padding: 20px;
+    flex-direction: column;
+  }
+
+  .sidebar.show {
+    left: 0; /* cuando se clickea el botón */
+  }
+
+  .sidebar h2, .sidebar a, .sidebar li {
+    color: #000; /* para que contraste con fondo claro móvil */
   }
 
   .sidebar ul {
     display: flex;
-    justify-content: space-around;
-    padding: 0;
-  }
-
-  .sidebar li {
-    margin: 0;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
   }
 
   .contenido {
-    margin-left: 0;
+    margin-left: 0; /* elimina el margen que tiene en PC */
+    padding: 20px;
   }
-
 }

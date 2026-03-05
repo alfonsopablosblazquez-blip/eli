@@ -8,7 +8,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body class="menu">
+  
+  <button id="menuBtn">&#9776;</button> 
+  <script>
+  const menuBtn = document.getElementById('menuBtn');
+  const sidebar = document.querySelector('.sidebar');
 
+  menuBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('show');
+  });
+  </script>
   <!-- Menú lateral -->
   <div class="sidebar">
     <h2>Menú</h2>
