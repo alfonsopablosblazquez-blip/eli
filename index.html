@@ -11,11 +11,42 @@
 
   <div class="card">
     <h1>Bienvenida Eli 🩷</h1>
-    <button class="abrirBtn" onclick="location.href='introduccion.html'">Abrir</button>
+
+    <input type="text" id="usuario" placeholder="Usuario">
+    <input type="password" id="password" placeholder="Contraseña">
+
+    <button onclick="login()">Entrar</button>
+
+    <p id="errorLogin"></p>
   </div>
 
+  <script>
+    function login() {
+
+      const usuario = document.getElementById("usuario").value;
+      const password = document.getElementById("password").value;
+      const error = document.getElementById("errorLogin");
+
+      const usuarioCorrecto = "eli";
+      const passwordCorrecta = "alfon";
+
+      if(usuario === usuarioCorrecto && password === passwordCorrecta){
+        window.location.href = "introduccion.html";
+      } else {
+        error.textContent = "Usuario o contraseña incorrectos";
+      }
+
+    }
+
+    // Permitir ENTER
+    document.addEventListener("keypress", function(e){
+      if(e.key === "Enter"){
+        login();
+      }
+    });
+  </script>
+
   <style>
-    /* Centrar la tarjeta en la pantalla */
     body.portada {
       display: flex;
       justify-content: center;
@@ -34,29 +65,45 @@
       box-shadow: 0 0 30px rgba(0,0,0,0.3);
       backdrop-filter: blur(8px);
       max-width: 90%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
     }
 
     .card h1 {
       color: white;
       font-size: 2.5em;
-      margin-bottom: 30px;
+      margin-bottom: 10px;
     }
 
-    .card button {
+    input {
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      font-size: 1em;
+    }
+
+    button {
       background: linear-gradient(135deg, #00c6ff, #0072ff);
       color: white;
       border: none;
       border-radius: 15px;
-      padding: 10px 20px;
+      padding: 10px;
       font-size: 1em;
       cursor: pointer;
       transition: 0.3s;
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
 
-    .card button:hover {
+    button:hover {
       background: linear-gradient(135deg, #0072ff, #00c6ff);
       transform: scale(1.05);
+    }
+
+    #errorLogin {
+      color: #ffb3b3;
+      font-size: 0.9em;
+      min-height: 20px;
     }
 
     @media (max-width: 480px) {
@@ -66,11 +113,6 @@
 
       .card h1 {
         font-size: 2em;
-      }
-
-      .card button {
-        padding: 8px 16px;
-        font-size: 0.9em;
       }
     }
   </style>
